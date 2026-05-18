@@ -1,5 +1,5 @@
 package com.artur.habittracker.service;
-
+import java.util.List;
 import com.artur.habittracker.entity.Habit;
 import com.artur.habittracker.repository.HabitRepository;
 import org.springframework.stereotype.Service;
@@ -16,5 +16,8 @@ public class HabitService {
 
     public Habit createHabit(Habit habit) {
         return habitRepository.save(habit);
+    }
+    public List<Habit> getAllHabits() {
+        return habitRepository.findAll();
     }
 }
