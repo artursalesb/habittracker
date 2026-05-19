@@ -2,6 +2,7 @@ package com.artur.habittracker.service;
 import java.util.List;
 import com.artur.habittracker.entity.Habit;
 import com.artur.habittracker.repository.HabitRepository;
+import com.artur.habittracker.exception.ResourceNotFoundException;
 import com.artur.habittracker.dto.CreateHabitRequest;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +31,6 @@ public class HabitService {
     }
     public Habit getHabitById(Long id) {
         return habitRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Habit not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Habit not found"));
     }
 }
