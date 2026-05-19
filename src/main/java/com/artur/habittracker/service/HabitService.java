@@ -28,4 +28,8 @@ public class HabitService {
     public List<Habit> getAllHabits() {
         return habitRepository.findAll();
     }
+    public Habit getHabitById(Long id) {
+        return habitRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Habit not found"));
+    }
 }

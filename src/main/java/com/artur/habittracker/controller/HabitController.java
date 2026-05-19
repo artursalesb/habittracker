@@ -24,4 +24,8 @@ public class HabitController {
     public List<Habit> getAllHabits() {
         return habitService.getAllHabits();
     }
+    @GetMapping("/{id}")
+    public Habit getHabitById(@PathVariable Long id) {
+        return habitService.getHabitById(id);
+    }
 }
