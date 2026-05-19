@@ -4,6 +4,7 @@ import com.artur.habittracker.entity.Habit;
 import com.artur.habittracker.repository.HabitRepository;
 import com.artur.habittracker.exception.ResourceNotFoundException;
 import com.artur.habittracker.dto.CreateHabitRequest;
+import com.artur.habittracker.dto.UpdateHabitRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,5 +39,15 @@ public class HabitService {
         Habit habit = getHabitById(id);
 
         habitRepository.delete(habit);
+    }
+    public Habit updateHabit(Long id, UpdateHabitRequest request) {
+
+        Habit habit = getHabitById(id);
+
+        habit.setName(request.getName());
+        habit.setDescription(request.getDescription());
+        habit.setStreak(request.getStreak());
+
+        return habitRepository.save(habit);
     }
 }

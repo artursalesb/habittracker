@@ -5,6 +5,7 @@ import com.artur.habittracker.service.HabitService;
 import com.artur.habittracker.dto.CreateHabitRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import com.artur.habittracker.dto.UpdateHabitRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -35,5 +36,12 @@ public class HabitController {
         habitService.deleteHabit(id);
 
         return ResponseEntity.noContent().build();
+    }
+    @PutMapping("/{id}")
+    public Habit updateHabit(
+            @PathVariable Long id,
+            @Valid @RequestBody UpdateHabitRequest request) {
+
+        return habitService.updateHabit(id, request);
     }
 }
