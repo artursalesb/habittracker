@@ -33,4 +33,10 @@ public class HabitService {
         return habitRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Habit not found"));
     }
+    public void deleteHabit(Long id) {
+
+        Habit habit = getHabitById(id);
+
+        habitRepository.delete(habit);
+    }
 }
