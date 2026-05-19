@@ -24,6 +24,7 @@ public class HabitService {
         habit.setName(request.getName());
         habit.setDescription(request.getDescription());
         habit.setStreak(request.getStreak());
+        habit.setType(request.getType());
 
         return habitRepository.save(habit);
     }
@@ -47,6 +48,7 @@ public class HabitService {
         habit.setName(request.getName());
         habit.setDescription(request.getDescription());
         habit.setStreak(request.getStreak());
+        habit.setType(request.getType());
 
         return habitRepository.save(habit);
     }

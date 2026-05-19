@@ -3,6 +3,7 @@ package com.artur.habittracker.dto;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import com.artur.habittracker.enums.HabitType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -19,4 +20,6 @@ public class UpdateHabitRequest {
 
     @Min(value = 0, message = "Streak cannot be negative")
     private Integer streak;
+
+    private HabitType type;
 }

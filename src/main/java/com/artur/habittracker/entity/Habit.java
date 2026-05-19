@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import com.artur.habittracker.enums.HabitType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 @Entity
 @Getter
 @Setter
@@ -25,4 +27,7 @@ public class Habit {
     private String description;
 
     private Integer streak;
+
+    @Enumerated(EnumType.STRING)
+    private HabitType type;
 }
