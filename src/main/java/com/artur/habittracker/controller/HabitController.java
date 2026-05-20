@@ -6,6 +6,7 @@ import com.artur.habittracker.dto.CreateHabitRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import com.artur.habittracker.dto.UpdateHabitRequest;
+import com.artur.habittracker.dto.HabitScoreResponse;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,14 +23,17 @@ public class HabitController {
     public Habit createHabit(@Valid @RequestBody CreateHabitRequest request) {
         return habitService.createHabit(request);
     }
+
     @GetMapping
     public List<Habit> getAllHabits() {
         return habitService.getAllHabits();
     }
+
     @GetMapping("/{id}")
     public Habit getHabitById(@PathVariable Long id) {
         return habitService.getHabitById(id);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteHabit(@PathVariable Long id) {
 
@@ -37,6 +41,7 @@ public class HabitController {
 
         return ResponseEntity.noContent().build();
     }
+
     @PutMapping("/{id}")
     public Habit updateHabit(
             @PathVariable Long id,
@@ -44,8 +49,12 @@ public class HabitController {
 
         return habitService.updateHabit(id, request);
     }
+
     @GetMapping("/{id}/score")
-    public int calculateScore(@PathVariable Long id) {
-        return habitService.calculateHabitScore(id);
+    public HabitScoreResponse calculateScore(@PathVariable Long id) {
+
+        int score = habitService.calculateHabitScore(id);
+
+        return new HabitScoreResponse(score);
     }
 }
