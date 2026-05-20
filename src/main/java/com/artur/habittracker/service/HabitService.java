@@ -6,28 +6,25 @@ import com.artur.habittracker.exception.ResourceNotFoundException;
 import com.artur.habittracker.dto.CreateHabitRequest;
 import com.artur.habittracker.dto.UpdateHabitRequest;
 import com.artur.habittracker.strategy.HabitScoreCalculator;
+import com.artur.habittracker.factory.HabitFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 
 public class HabitService {
-
+    private final HabitFactory habitFactory;
     private final HabitRepository habitRepository;
     private final HabitScoreCalculator scoreCalculator;
 
-    public HabitService(HabitRepository habitRepository, HabitScoreCalculator scoreCalculator) {
+    public HabitService(HabitRepository habitRepository, HabitScoreCalculator scoreCalculator, HabitFactory habitFactory) {
+        this.habitFactory = habitFactory;
         this.scoreCalculator = scoreCalculator;
         this.habitRepository = habitRepository;
     }
 
     public Habit createHabit(CreateHabitRequest request) {
 
-        Habit habit = new Habit();
-
-        habit.setName(request.getName());
-        habit.setDescription(request.getDescription());
-        habit.setStreak(request.getStreak());
-        habit.setType(request.getType());
+        Habit habit = habitFactory.createHabit(request);
 
         return habitRepository.save(habit);
     }
