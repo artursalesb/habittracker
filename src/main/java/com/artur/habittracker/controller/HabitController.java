@@ -44,4 +44,8 @@ public class HabitController {
 
         return habitService.updateHabit(id, request);
     }
+    @GetMapping("/{id}/score")
+    public int calculateScore(@PathVariable Long id) {
+        return habitService.calculateHabitScore(id);
+    }
 }
